@@ -140,8 +140,17 @@ class Tree:
         if (node != None):
             print(node.data)
             self._order(node.evens)
+            self._order(node.left)
+            self._order(node.right)
             self._order(node.odds)
+            self._order(node.left)
+            self._order(node.right)
             self._order(node.vowels)
+            self._order(node.a)
+            self._order(node.e)
+            self._order(node.i)
+            self._order(node.o)
+            self._order(node.u)
             self._order(node.consonants)
 
 a = Tree()
