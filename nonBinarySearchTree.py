@@ -46,13 +46,33 @@ class Tree:
         cleanString = re.sub("\W+", "", value)
         newValue = self.valueType((cleanString[0]))
         if (newValue == self.VOWEL):
-            node.vowels = Node(value)
+            if (node.vowels != None):
+                self._add(value, node.vowels)
+            else:
+                node.vowels = Node(value)
         elif (newValue == self.CONSONANT):
-            node.consonants = Node(value)
+            if (node.consonants != None):
+                self._add(value, node.consonants)
+            else:
+                node.consonants = Node(value)
         elif (newValue == self.ODD):
-            node.odds = Node(value)
+            if (node.odds != None):
+                self._add(value, node.odds)
+            else:
+                node.odds = Node(value)
         elif (newValue == self.EVEN):
-            node.evens = Node(value)
+            if (node.evens != None):
+                self._add(value, node.evens)
+            else:
+                node.evens = Node(value)
+
+    def addFromFile(self, filePath):
+        lines = []
+        with open(filePath) as f:
+            lines = f.readlines()
+        for line in lines:
+            if (line != None):
+                a.add(str(line))
 
     def search(self, value):
         if (self.root != None):
@@ -68,6 +88,7 @@ class Tree:
         elif (newValue == self.VOWEL and node.vowels != None):
             self._search(value, node.vowels)
         elif (newValue == self.CONSONANT and node.consonants != None):
+            print('eh consoante')
             self._search(value, node.consonants)
         elif (newValue == self.ODD and node.odds != None):
             self._search(value, node.odds)
@@ -89,13 +110,5 @@ class Tree:
             self._order(node.consonants)
 
 a = Tree()
-a.add('c7f55e08-9347-11eb-a8b3-0242ac130003')
-a.add('369c68e1-3c04-4d83-80b4-92dc430938d1')
-a.add('219f73e2-c67e-4e70-ad2a-c71440f8d4ef')
-a.add('e07dc30d-e588-4d40-bb6a-11a4465ef7f1')
-a.add('d723ce63-0b72-448c-a4e7-173fc20ac470')
-a.add('03fefc36-c6f8-44b7-983c-43acc0be008a')
-a.add('75d374e0-2e02-41af-a5e6-5eec4a402355')
-
-a.search('369c68e1-3c04-4d83-80b4-92dc430938d1')
-# a.order()
+a.addFromFile('v4_uuids(1).txt')
+a.order()
