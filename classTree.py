@@ -40,66 +40,25 @@ class Tree:
         cleanString = re.sub("\W+", "", value)
         newValue = self.valueType((cleanString[0]))
         if (newValue == self.VOWEL):
-            self.addInVowels(value, node)
+            if (node.vowels == None):
+                node.vowels = Node(value)
+            else:
+                self._add(value, node.vowels)
         elif (newValue == self.CONSONANT):
             if (node.consonants != None):
                 self._add(value, node.consonants)
-            else:
+            else:     
                 node.consonants = Node(value)
         elif (newValue == self.ODD):
-            self.addInOdds(value, node)
+            if (node.odds != None):
+                self._add(value, node.odds)
+            else:
+                node.odds = Node(value)
         elif (newValue == self.EVEN):
-            self.addInEvens(value, node)
-    
-    def addInVowels(self, value, node):
-        cleanString = re.sub("\W+", "", value)
-        if (node.vowels != None):
-            if (cleanString[0] == self.vowelsArray[0]):
-                node.a = Node(value)
-            elif (cleanString[0] == self.vowelsArray[1]):
-                node.e = Node(value)
-            elif (cleanString[0] == self.vowelsArray[2]):
-                node.i = Node(value)
-            elif (cleanString[0] == self.vowelsArray[3]):
-                node.o = Node(value)
-            elif (cleanString[0] == self.vowelsArray[4]):
-                node.u = Node(value)
-        else:
-            node.vowels = Node(value)
-    
-    def addInOdds(self, value, node):
-        cleanString = re.sub("\W+", "", value)
-        auxString = re.sub("\W+", "", node.data)
-        if (node.odds != None):
-            if (int(cleanString[0]) < int(auxString[0])):
-                if (node.left != None):
-                    self._add(value, node.left)
-                else:
-                    node.left = Node(value)
+            if (node.evens != None):
+                self._add(value, node.evens)
             else:
-                if (node.right != None):
-                    self._add(value, node.right)
-                else:
-                    node.right = Node(value)
-        else:
-            node.odds = Node(value)
-
-    def addInEvens(self, value, node):
-        cleanString = re.sub("\W+", "", value)
-        auxString = re.sub("\W+", "", node.data)
-        if (node.evens != None):
-            if (int(cleanString[0]) < int(auxString[0])):
-                if (node.left != None):
-                    self._add(value, node.left)
-                else:
-                    node.left = Node(value)
-            else:
-                if (node.right != None):
-                    self._add(value, node.right)
-                else:
-                    node.right = Node(value)
-        else:
-            node.evens = Node(value)
+                node.evens = Node(value)    
 
     def addFromFile(self, filePath):
         lines = []
@@ -116,17 +75,17 @@ class Tree:
             return None
     
     def _search(self, value, node):
-        cleanString = re.sub("\W+", "", value)
+        cleanString = re.sub(r"\W+", "", value)
+        cleanAux = re.sub(r"\W+", "", node.data)
         newValue = self.valueType(cleanString[0])
-        if (value == node.data):
-            return print(node.data)
+        if (cleanString == cleanAux):
+            return print("found it: " + node.data)
         elif (newValue == self.VOWEL and node.vowels != None):
             self._search(value, node.vowels)
         elif (newValue == self.CONSONANT and node.consonants != None):
-            print('eh consoante')
             self._search(value, node.consonants)
         elif (newValue == self.ODD and node.odds != None):
-            self._search(value, node.odds)
+            self._search(value, node.odds)                    
         elif (newValue == self.EVEN and node.evens != None):
             self._search(value, node.evens)
         else:
@@ -140,19 +99,10 @@ class Tree:
         if (node != None):
             print(node.data)
             self._order(node.evens)
-            self._order(node.left)
-            self._order(node.right)
             self._order(node.odds)
-            self._order(node.left)
-            self._order(node.right)
             self._order(node.vowels)
-            self._order(node.a)
-            self._order(node.e)
-            self._order(node.i)
-            self._order(node.o)
-            self._order(node.u)
             self._order(node.consonants)
 
 a = Tree()
 a.addFromFile('v4_uuids(1).txt')
-#a.order()
+a.order()
