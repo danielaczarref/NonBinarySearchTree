@@ -102,7 +102,3 @@ class Tree:
             self._order(node.odds)
             self._order(node.vowels)
             self._order(node.consonants)
-
-a = Tree()
-a.addFromFile('v4_uuids(1).txt')
-a.order()
