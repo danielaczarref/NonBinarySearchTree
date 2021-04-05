@@ -27,9 +27,9 @@ By using the version 4 of UUID, the first element of our key can be one of the f
 
 | Operation | Best Case Complexity | Average Case Complexity | Worst Case Complexity |
 | :---: | :---: | :---: | :---: | 
-| Insertion | O(log n) | O(log n) | 0(n) |
+| Insertion | O(log n) | O(log n) | O(n) |
 | Search | O(log n) | O(log n) | O(n) |
-| Deletion | O(log n) | O(log n) | 0(n) |
+| Deletion | O(log n) | O(log n) | O(n) |
 
 That means that searching, inserting and deleting can be done in logarithmic time, which present an excelent results according to  the Big-O Complexity Chart for algorithms.
 
