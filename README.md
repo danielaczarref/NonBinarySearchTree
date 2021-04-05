@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Binary or non-binary search trees are node-based data structures and they're called search trees because they can be used to search for the presence of an element in `0(log(n))` time, in which `n` is the number of nodes in the tree.
+Binary or non-binary search trees are node-based data structures and they're called search trees because they can be used to search for the presence of an element in `O(log(n))` time, in which `n` is the number of nodes in the tree.
 
 The non-binary search tree here implemented has many benefits, among them:
 1. It's an ideal way to represent the storing data with hierarchical way;
